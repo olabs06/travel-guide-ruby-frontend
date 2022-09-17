@@ -38,11 +38,11 @@ function App() {
     })
   }
 
-  
-
-  // function onRank(value){
-    
-  // }
+  function onRank(value){
+    fetch(`http://localhost:9292/cities/rank_by/${value}`)
+    .then(r => r.json())
+    .then(data => {setCityList(data)})
+  }
 
   return (
     <div className="App">
@@ -56,15 +56,14 @@ function App() {
             />
           </Routes>
         </Col>
-        </Row>
-        {/* <Col xs={12} sm={6} md={4} lg={4} xl={4}>
+        <Col xs={12} sm={6} md={4} lg={4} xl={4}>
           <Routes>
-            <Route path={`Cities`} element={<RankBar onRank={onRank}/>}
+            <Route path={`cities`} element={<RankBar onRank={onRank}/>}
             />
           </Routes>
         </Col>
       </Row>
-      <Routes>
+      {/* <Routes>
           <Route path='/' element={<Home />}/>
           <Route path={`Cities`} element={
               <CityList Citys={allCitys}/>

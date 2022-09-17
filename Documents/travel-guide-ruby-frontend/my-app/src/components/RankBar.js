@@ -1,26 +1,23 @@
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 
-function RankBar ({onSort}){
+function RankBar ({onRank}){
     function handleSort(e){
-        onSort(e)
+        onRank(e)
     }
     return (
         <DropdownButton
             onSelect={handleSort}
             align="end"
-            title="Filter Movies By Genre"
+            title="Filter Cities By Criteria"
             id="dropdown-menu-align-end"
             variant="warning"
         >
             <Dropdown.Item eventKey="all">All</Dropdown.Item>
             <Dropdown.Divider />
-            <Dropdown.Item eventKey="action">Action</Dropdown.Item>
-            <Dropdown.Item eventKey="adventure">Adventure</Dropdown.Item>
-            <Dropdown.Item eventKey="crime">Crime</Dropdown.Item>
-            <Dropdown.Item eventKey="drama">Drama</Dropdown.Item>
-            <Dropdown.Item eventKey="horror">Horror</Dropdown.Item>
-            <Dropdown.Item eventKey="comedy">Comedy</Dropdown.Item>
+            <Dropdown.Item eventKey="minimum_wage">Minimum Wage</Dropdown.Item>
+            <Dropdown.Item eventKey="crime_rate">Crime Rate</Dropdown.Item>
+            <Dropdown.Item eventKey="employment_rate">Employment Rate</Dropdown.Item>
         </DropdownButton>
       );
 }
