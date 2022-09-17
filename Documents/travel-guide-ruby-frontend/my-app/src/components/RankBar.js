@@ -13,7 +13,7 @@ function RankBar ({onRank}){
             id="dropdown-menu-align-end"
             variant="warning"
         >
-            <Dropdown.Item eventKey="all">All</Dropdown.Item>
+            <Dropdown.Item eventKey="default">Default</Dropdown.Item>
             <Dropdown.Divider />
             <Dropdown.Item eventKey="minimum_wage">Minimum Wage</Dropdown.Item>
             <Dropdown.Item eventKey="crime_rate">Crime Rate</Dropdown.Item>

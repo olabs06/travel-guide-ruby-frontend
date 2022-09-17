@@ -11,6 +11,7 @@ import Row from 'react-bootstrap/Row';
 
 function App() {
   const [cities, setCityList] = useState([])
+  const [defaultCities, setDefaultCityList] = useState([])
   
   const match = useMatch({
     path: "/*",
@@ -22,7 +23,9 @@ function App() {
   useEffect(()=>{
     fetch(`http://localhost:9292/cities`)
     .then(r => r.json())
-    .then(data => {setCityList(data)})
+    .then(data => {
+      setCityList(data)
+      setDefaultCityList(data)})
   },[])
 
   function onSearch(value){
@@ -38,10 +41,17 @@ function App() {
     })
   }
 
+  
+
   function onRank(value){
-    fetch(`http://localhost:9292/cities/rank_by/${value}`)
-    .then(r => r.json())
-    .then(data => {setCityList(data)})
+    if (value === 'default'){
+      setCityList(defaultCities)
+    }else{
+      fetch(`http://localhost:9292/cities/rank_by/${value}`)
+      .then(r => r.json())
+      .then(data => {setCityList(data)})
+    }
+    
   }
 
   return (
@@ -65,11 +75,11 @@ function App() {
       </Row>
       {/* <Routes>
           <Route path='/' element={<Home />}/>
-          <Route path={`Cities`} element={
+          <Route path={`cities`} element={
               <CityList Citys={allCitys}/>
           }
           />
-          <Route path={`${match.pathnameBase}/Cities/:id`} element={<CitySpecs Citys={allCitys} />} />
+          <Route path={`${match.pathnameBase}/cities/:id`} element={<CitySpecs Citys={allCitys} />} />
       </Routes>       */}
     </div>
   );
