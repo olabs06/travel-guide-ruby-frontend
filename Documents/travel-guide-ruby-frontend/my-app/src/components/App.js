@@ -73,14 +73,11 @@ function App() {
           </Routes>
         </Col>
       </Row>
-      {/* <Routes>
+      <Routes>
           <Route path='/' element={<Home />}/>
-          <Route path={`cities`} element={
-              <CityList Citys={allCitys}/>
-          }
-          />
-          <Route path={`${match.pathnameBase}/cities/:id`} element={<CitySpecs Citys={allCitys} />} />
-      </Routes>       */}
+          <Route path={`cities`} element={<CityList cities={cities}/>}/>
+          <Route path={`${match.pathnameBase}/cities/:id`} element={<CitySpecs cities={cities} />} />
+      </Routes>      
     </div>
   );
 }
