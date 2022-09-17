@@ -10,8 +10,7 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
 function App() {
-  const [allCitys, setCityList] = useState([])
-  const [altCitys, setAltCitys] = useState([])
+  const [cities, setCityList] = useState([])
   
   const match = useMatch({
     path: "/*",
@@ -20,30 +19,24 @@ function App() {
   });
   console.log(match.pathname, match.pathnameBase, match.params['*'])
 
-  // useEffect(()=>{
-  //   fetch(`${process.env.REACT_APP_API_URL}/Citys`)
-  //   .then(r => r.json())
-  //   .then(data => {
-  //     setCityList(data)
-  //     setAltCitys(data)
-  //     })
-  // },[])
+  useEffect(()=>{
+    fetch(`http://localhost:9292/cities`)
+    .then(r => r.json())
+    .then(data => {setCityList(data)})
+  },[])
 
-  // function onSearch(value){
-  //   const CityName = []
-  //   altCitys.forEach(City =>{
-  //     const splitArray = City.name.split(' ')
-  //     for (let name of splitArray){
-  //       if (name.toLowerCase() === value.toLowerCase()){
-  //         CityName.push(City)
-  //         setCityList(CityName)
-  //       }
-  //     }
-  //     if (value === ''){
-  //       //resetCity()
-  //     }
-  //   })
-  // }
+  function onSearch(value){
+    const cityName = []
+    cities.forEach(city =>{
+      const splitCityName = city.name.split(' ')
+      for (let name of splitCityName){
+        if (name.toLowerCase() === value.toLowerCase()){
+          cityName.push(city)
+          setCityList(cityName)
+        }
+      }
+    })
+  }
 
   
 
@@ -57,14 +50,14 @@ function App() {
         <Col xs={12} sm={6} md={4} lg={4} xl={4}>
           <Menu />
         </Col>
-      </Row>
-        {/* <Col xs={12} sm={6} md={4} lg={4} xl={4}>
+        <Col xs={12} sm={6} md={4} lg={4} xl={4}>
           <Routes>
-            <Route path={`Cities`} element={<Search onSearch={onSearch}/>}
+            <Route path={`cities`} element={<Search onSearch={onSearch}/>}
             />
           </Routes>
         </Col>
-        <Col xs={12} sm={6} md={4} lg={4} xl={4}>
+        </Row>
+        {/* <Col xs={12} sm={6} md={4} lg={4} xl={4}>
           <Routes>
             <Route path={`Cities`} element={<RankBar onRank={onRank}/>}
             />
