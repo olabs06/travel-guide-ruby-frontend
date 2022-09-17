@@ -20,64 +20,65 @@ function App() {
   });
   console.log(match.pathname, match.pathnameBase, match.params['*'])
 
-  useEffect(()=>{
-    fetch(`${process.env.REACT_APP_API_URL}/Citys`)
-    .then(r => r.json())
-    .then(data => {
-      setCityList(data)
-      setAltCitys(data)
-      })
-  },[])
+  // useEffect(()=>{
+  //   fetch(`${process.env.REACT_APP_API_URL}/Citys`)
+  //   .then(r => r.json())
+  //   .then(data => {
+  //     setCityList(data)
+  //     setAltCitys(data)
+  //     })
+  // },[])
 
-  function onSearch(value){
-    const CityName = []
-    altCitys.forEach(City =>{
-      const splitArray = City.name.split(' ')
-      for (let name of splitArray){
-        if (name.toLowerCase() === value.toLowerCase()){
-          CityName.push(City)
-          setCityList(CityName)
-        }
-      }
-      if (value === ''){
-        //resetCity()
-      }
-    })
-  }
+  // function onSearch(value){
+  //   const CityName = []
+  //   altCitys.forEach(City =>{
+  //     const splitArray = City.name.split(' ')
+  //     for (let name of splitArray){
+  //       if (name.toLowerCase() === value.toLowerCase()){
+  //         CityName.push(City)
+  //         setCityList(CityName)
+  //       }
+  //     }
+  //     if (value === ''){
+  //       //resetCity()
+  //     }
+  //   })
+  // }
 
   
 
-  function onRank(value){
+  // function onRank(value){
     
-  }
+  // }
 
   return (
     <div className="App">
       <Row className="App-header">
         <Col xs={12} sm={6} md={4} lg={4} xl={4}>
-          <Menu/>
+          <Menu />
         </Col>
-        <Col xs={12} sm={6} md={4} lg={4} xl={4}>
+      </Row>
+        {/* <Col xs={12} sm={6} md={4} lg={4} xl={4}>
           <Routes>
-            <Route path={`Citys`} element={<Search onSearch={onSearch}/>}
+            <Route path={`Cities`} element={<Search onSearch={onSearch}/>}
             />
           </Routes>
         </Col>
         <Col xs={12} sm={6} md={4} lg={4} xl={4}>
           <Routes>
-            <Route path={`Citys`} element={<RankBar onRank={onRank}/>}
+            <Route path={`Cities`} element={<RankBar onRank={onRank}/>}
             />
           </Routes>
         </Col>
       </Row>
       <Routes>
           <Route path='/' element={<Home />}/>
-          <Route path={`Citys`} element={
+          <Route path={`Cities`} element={
               <CityList Citys={allCitys}/>
           }
           />
-          <Route path={`${match.pathnameBase}/Citys/:id`} element={<CitySpecs Citys={allCitys} />} />
-      </Routes>      
+          <Route path={`${match.pathnameBase}/Cities/:id`} element={<CitySpecs Citys={allCitys} />} />
+      </Routes>       */}
     </div>
   );
 }
