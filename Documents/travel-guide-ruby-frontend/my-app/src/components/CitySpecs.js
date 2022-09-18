@@ -11,14 +11,17 @@ import Badge from 'react-bootstrap/Badge';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Image from 'react-bootstrap/Image'
 import {truncate} from "./CityCard";
+import EditReview from "./EditReview";
 
 function CitySpecs (){
     const params = useParams();
     const id = params.id
     const noReview = <div>No reviews for this city at the moment</div>
     const [formData, setFormData] = useState({name: 'comments', value: ""})
+    const [isEditing, setIsEditing] = useState(false)
     const [city, setCity] = useState({})
     const [reviews, setReviews] = useState([])
+    const [reviewID, setReviewID] = useState()
     useEffect(()=>{
         fetch(`http://localhost:9292/cities/${id}`)
         .then(r => r.json())
@@ -49,7 +52,7 @@ function CitySpecs (){
                 <div className="fw-bold">{review.user.name}</div>
                 <div>{review.comment}</div>
                 <br/>
-                <div className="fw-bold">Star Ratings</div>
+                <div className="fw-bold">Star Ratings (out of 5)</div>
                 <br/>
                 <Row>
                     <Col><h6>Traffic:</h6> {review.traffic}</Col>
@@ -62,11 +65,25 @@ function CitySpecs (){
                     <Col><h6>Quality of healthcare:</h6> {review.quality_of_healthcare}</Col>
                 </Row>
             </div>
-            <Badge bg="danger" pill>
-                <small>{truncate(review.updated_at, 10)}</small>
-            </Badge>
+            
+            <Row>
+                <Badge pill>
+                    <small>{truncate(review.updated_at, 10)}</small>
+                </Badge>
+                <button onClick={handleUpdate} id={review.id}>
+                    ✏️
+                </button>
+                <button  id={review.id}>
+                    🗑
+                </button>
+            </Row>            
         </ListGroup.Item>
         )
+
+        function handleUpdate(e){
+            setIsEditing((isEditing) => !isEditing)
+            setReviewID(e.target.id)
+        }
     
     // function handleComment(e){
     //     let name = e.target.name;
@@ -132,8 +149,10 @@ function CitySpecs (){
                             </form> }
                         </Col> */}
                         <Col>
-                            <ListGroup as="ol" numbered>{reviews.length !== 0 ? displayReviews : noReview}</ListGroup>
-                            {console.log(reviews)}
+                            <ListGroup as="ol" numbered>{reviews.length !== 0 ?
+                                (isEditing ?  <EditReview id={reviewID}/> : displayReviews) : noReview
+                                }
+                             </ListGroup>
                         </Col>  
                     </Row>
                 </Col>
