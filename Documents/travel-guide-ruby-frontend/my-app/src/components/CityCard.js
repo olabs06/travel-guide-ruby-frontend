@@ -1,6 +1,6 @@
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import { Link } from "react-router-dom"; 
+import { Link } from "react-router-dom";
 
 function CityCard({city}){
     function truncate (string = '', limit = 0) {
@@ -11,18 +11,28 @@ function CityCard({city}){
         }
       }
 
+      const textStyle = {
+        fontSize: 15, color: 'black', fontWeight: 500
+      }
+
+      const titleStyle = {
+        fontSize: 30, color: 'black',  fontWeight: 'bold'
+      }
+
+
   return (
-    <Card style={{ width: '15rem', margin: '20px' }}>
-      <Card.Img variant="top" src={city.image} alt={city.name}/>
-      <Card.Body>
-        <Card.Title>{truncate(city.name, 12)}</Card.Title>
-        <Card.Text>Employment Rate: {city.employment_rate}%</Card.Text>
-        <Card.Text>Crime Rate: {city.crime_rate}%</Card.Text>
-        <Card.Text>Minimum wage: ${city.minimum_wage}</Card.Text>
+    <Card style={{ width: '20rem', margin: '10px', }}>
         <Link key={city.id} to={`/cities/${city.id}`}>
-            <Button variant="warning">Find out more</Button>
+            <Card.Img src={city.image} alt={city.name} style={{height: '15rem'}}/>
+            <Card.ImgOverlay >
+                <div style={{background: 'white', opacity: 0.8, padding: '10px'}}>
+                    <Card.Title style={titleStyle}>{truncate(city.name, 12)}</Card.Title>
+                    <Card.Text style={textStyle}>Employment Rate: {city.employment_rate}%</Card.Text>
+                    <Card.Text style={textStyle}>Crime Rate: {city.crime_rate}%</Card.Text>
+                    <Card.Text style={textStyle}>Minimum wage: ${city.minimum_wage}</Card.Text>
+                </div>
+            </Card.ImgOverlay>
         </Link>
-      </Card.Body>
     </Card>
   );
 }

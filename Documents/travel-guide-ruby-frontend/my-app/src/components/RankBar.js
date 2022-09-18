@@ -9,9 +9,9 @@ function RankBar ({onRank}){
         <DropdownButton
             onSelect={handleSort}
             align="end"
-            title="Filter Cities By Criteria"
+            title="Rank Cities By Criteria"
             id="dropdown-menu-align-end"
-            variant="warning"
+            variant="primary"
         >
             <Dropdown.Item eventKey="default">Default</Dropdown.Item>
             <Dropdown.Divider />
