@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import Form from "react-bootstrap/Form";
 //import App from "./App.js"
 
@@ -34,21 +34,25 @@ function postReview(e) {
       .then((newReview) => console.log(newReview));
 }
 
+
+
 function Review() {
+  const [userData, setUserData] = useState([])
+  
   return (
   <Form>
     <div class="form-group">
       <label for="Userselect">User Name</label>
       {/* <input type="text" class="form-control" id="ReviewFormInput" placeholder="User Name"></input> */}
       <select class="form-control" id="userFormSelect">
-        <option>{userdata.map(users =>
+        <option>{userData.map(users =>
           users.map(user => <user key={user.id} name={user.name}></user>))}</option>
       </select>
     </div>
     <div class="form-group">
       <label for="CitySelect">City</label>
       <select class="form-control" id="cityFormSelect">
-        <option>{userdata.map(users =>
+        <option>{userData.map(users =>
           users.map(user => <user key={user.id} city={user.city}></user>))}</option>
       </select>
     </div>

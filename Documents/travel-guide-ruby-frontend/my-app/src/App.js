@@ -3,6 +3,7 @@ import React, {useEffect, useState} from "react";
 import {Route, Routes, useMatch} from "react-router-dom";
 import Home from './Home';
 import Menu from './Menu';
+import Review from './Components/Review';
 import Cards from './Cards';
 import CitiesList from "./CitiesList";
 import Search from './Search';
@@ -12,6 +13,7 @@ import Row from 'react-bootstrap/Row';
 function App() {
   const [allCities, setCitiesList] = useState([])
   const [altCities, setAltCities] = useState([])
+  
   
   const match = useMatch({
     path: "/*",
@@ -65,6 +67,7 @@ function App() {
       </Row>
       <Routes>
           <Route path='/' element={<Home />}/>
+          <Route path= '/' element={<Review />}/>
           <Route path={`cities`} element={
               <CitiesList cities={allCities}/>
           }
