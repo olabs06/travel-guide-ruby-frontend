@@ -3,6 +3,7 @@ import React, {useEffect, useState} from "react";
 import {Route, Routes, useMatch} from "react-router-dom";
 import Home from './Home';
 import Menu from './Menu';
+import Review from './Review';
 import Cards from './Cards';
 import CitiesList from "./CitiesList";
 import Search from './Search';
@@ -69,6 +70,7 @@ function App() {
               <CitiesList cities={allCities}/>
           }
           />
+          <Route path="/review" exact element={<Review />}/>
       </Routes>      
     </div>
   );
