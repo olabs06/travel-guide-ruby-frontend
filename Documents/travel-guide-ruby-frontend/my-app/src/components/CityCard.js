@@ -11,8 +11,6 @@ export function truncate (string = '', limit = 0) {
   }
 
 function CityCard({city}){
-    
-
       const textStyle = {
         fontSize: 15, color: 'black', fontWeight: 500
       }
@@ -20,7 +18,6 @@ function CityCard({city}){
       const titleStyle = {
         fontSize: 30, color: 'black',  fontWeight: 'bold'
       }
-
 
   return (
     <Card style={{ width: '100%', margin: '10px', }}>

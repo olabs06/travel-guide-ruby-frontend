@@ -15,7 +15,7 @@ import {truncate} from "./CityCard";
 function CitySpecs (){
     const params = useParams();
     const id = params.id
-    console.log(id)
+    const noReview = <div>No reviews for this city at the moment</div>
     const [formData, setFormData] = useState({name: 'comments', value: ""})
     const [city, setCity] = useState({})
     const [reviews, setReviews] = useState([])
@@ -97,12 +97,15 @@ function CitySpecs (){
                 <Col>
                     <Image src={city.image} alt={city.name}  width='450' rounded="true" fluid="true" style={imgStyle}/>
                     <h1 style={{fontWeight: 700}}>{city.name}</h1>
-                    <div style={{float: 'left'}}><h4>Minimum Wage</h4><p>${city.minimum_wage}</p></div>
-                    <h4>Country</h4><p>{city.country}</p>
-                    <div style={{float: 'right'}}><h4>Currency</h4><p>{city.currency}</p></div>
-                    <h4>Crime Rate</h4><p>{city.crime_rate}%</p>
-                    <div style={{float: 'left'}}><h4>Employment Rate</h4><p>{city.employment_rate}%</p></div>
-                    
+                    <Row>
+                        <Col><h4>Minimum Wage</h4><p>${city.minimum_wage}</p></Col>
+                        <Col><h4>Country</h4><p>{city.country}</p></Col>
+                    </Row>
+                    <Row>
+                        <Col><h4>Currency</h4><p>{city.currency}</p></Col>
+                        <Col><h4>Employment Rate</h4><p>{city.employment_rate}%</p></Col>
+                    </Row>
+                    <Row><h4>Crime Rate</h4><p>{city.crime_rate}%</p></Row> 
                 </Col>
                 <Col style={divStyle}>
                     <h1 style={{fontWeight: 700}}>Reviews</h1>
@@ -129,7 +132,8 @@ function CitySpecs (){
                             </form> }
                         </Col> */}
                         <Col>
-                            <ListGroup as="ol" numbered>{displayReviews}</ListGroup>
+                            <ListGroup as="ol" numbered>{reviews.length !== 0 ? displayReviews : noReview}</ListGroup>
+                            {console.log(reviews)}
                         </Col>  
                     </Row>
                 </Col>
