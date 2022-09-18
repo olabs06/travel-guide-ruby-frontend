@@ -117,7 +117,7 @@ function Review() {
       <label for="reviewFormTextarea">Review</label>
       <textarea class="form-control" id="reviewFormTextarea" rows="6"></textarea>
     </div>
-    <button onSubmit={postReview} class="btn btn-primary" type="submit">Button</button>
+    <button onSubmit={postReview} class="btn btn-primary" type="submit">Submit</button>
   </Form>
   )
 }
