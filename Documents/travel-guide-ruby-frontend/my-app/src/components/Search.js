@@ -5,17 +5,15 @@ function Search ({onSearch}){
         onSearch(e.target.value)
     }
     return(
- 
         <InputGroup className="mb-3">
-        <InputGroup.Text id="basic-addon1">&#x1F50E;</InputGroup.Text>
-            <Form.Control
-            placeholder="Search for your favorite city..."
-            aria-label="Search"
-            aria-describedby="basic-addon1"
-            onChange={handleClick}
-            />
-      </InputGroup>
-
+            <InputGroup.Text id="basic-addon1">&#x1F50E;</InputGroup.Text>
+                <Form.Control
+                    placeholder="Search for your favorite city..."
+                    aria-label="Search"
+                    aria-describedby="basic-addon1"
+                    onChange={handleClick}
+                />
+        </InputGroup>
     );
 }
 

@@ -21,7 +21,7 @@ function CityCard({city}){
 
 
   return (
-    <Card style={{ width: '20rem', margin: '10px', }}>
+    <Card style={{ width: '100%', margin: '10px', }}>
         <Link key={city.id} to={`/cities/${city.id}`}>
             <Card.Img src={city.image} alt={city.name} style={{height: '15rem'}}/>
             <Card.ImgOverlay >
