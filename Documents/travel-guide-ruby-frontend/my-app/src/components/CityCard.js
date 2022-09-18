@@ -2,14 +2,16 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { Link } from "react-router-dom";
 
+export function truncate (string = '', limit = 0) {
+    if (string.length > 13) {
+        return `${string.substring(0, limit)}...`
+    } else{
+        return string
+    }
+  }
+
 function CityCard({city}){
-    function truncate (string = '', limit = 0) {
-        if (string.length > 13) {
-            return `${string.substring(0, limit)}...`
-        } else{
-            return string
-        }
-      }
+    
 
       const textStyle = {
         fontSize: 15, color: 'black', fontWeight: 500
