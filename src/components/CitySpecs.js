@@ -117,7 +117,7 @@ function CitySpecs (){
             }).then((r) => r.json())
                 .then((data) => setReviews([...reviews, data]))
                 .catch((error) => {
-                    console.error('Error:', error);
+                    console.error('Error message:', error);
                   })
             }
     }
