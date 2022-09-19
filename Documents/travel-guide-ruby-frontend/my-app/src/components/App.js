@@ -51,7 +51,7 @@ function App() {
     if (value === 'default'){
       setCityList(defaultCities)
     }else{
-      fetch(`http://localhost:9292/cities/rank_by/${value}`)
+      fetch(`https://radiant-oasis-70177.herokuapp.com/cities/rank_by/${value}`)
       .then(r => r.json())
       .then(data => {setCityList(data)})
     }
