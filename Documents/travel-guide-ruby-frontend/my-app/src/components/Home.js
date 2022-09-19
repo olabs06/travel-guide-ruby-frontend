@@ -1,6 +1,6 @@
 function Home(){
     return(
-        <div class="has-bg-img" style={{ backgroundImage: `url(${process.env.PUBLIC_URL+ "/assets/img/digital-nomad-realities-hero.jpg"})`, 
+        <div className="has-bg-img" style={{ backgroundImage: `url(${process.env.PUBLIC_URL+ "/assets/img/digital-nomad-realities-hero.jpg"})`, 
           backgroundRepeat: 'no-repeat',  
           backgroundSize: 'cover',
           height:'100vh'  }}>

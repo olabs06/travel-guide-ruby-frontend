@@ -12,11 +12,22 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Image from 'react-bootstrap/Image'
 import {truncate} from "./CityCard";
 
+let baseData = {
+    "traffic": 3,
+    "night_life": 2,
+    "friendly_to_foreigner": 2,
+    "places_to_work_from": 2,
+    "quality_of_internet": 5,
+    "quality_of_healthcare": 5,
+    "user_id": 3,
+    "city_id": 3
+}
+
 function CitySpecs (){
     const params = useParams();
     const id = params.id
     const noReview = <div>No reviews for this city at the moment</div>
-    const [formData, setFormData] = useState({name: 'comments', value: ""})
+    const [formData, setFormData] = useState(baseData)
     const [city, setCity] = useState({})
     const [reviews, setReviews] = useState([])
     useEffect(()=>{
@@ -67,44 +78,49 @@ function CitySpecs (){
                 <Badge pill>
                     <small>{truncate(review.updated_at, 10)}</small>
                 </Badge>
-                <button  onClick={handleDelete} id={review.id}>
+                <button style={{margin: '10px', background: 'none', border: 'none'}} onClick={handleDelete} id={review.id}>
                     🗑
                 </button>
             </Row>            
         </ListGroup.Item>
         )
 
-        function handleDelete(e){
-            const id = e.target.id
-            fetch(`https://radiant-oasis-70177.herokuapp.com/reviews/${id}`, {
-                method: "DELETE",
-            })
-            const updatedReviews = reviews.filter((review) => review.id.toString() !== id)
-            setReviews(updatedReviews)
-        }
+    function handleDelete(e){
+        const id = e.target.id
+        fetch(`https://radiant-oasis-70177.herokuapp.com/reviews/${id}`, {
+            method: "DELETE",
+        })
+        const updatedReviews = reviews.filter((review) => review.id.toString() !== id)
+        setReviews(updatedReviews)
+    }
     
-    // function handleComment(e){
-    //     let name = e.target.name;
-    //     let value = e.target.value;
-    //     setFormData({...formData, [name]:value})
-    // }
+    function handleComment(e){
+        let name = e.target.name;
+        let value = e.target.value;
+        console.log(name,value, e.target.id)
+        
+        baseData.city_id = e.target.id
+        setFormData({...formData, [name]:value})
+    }
 
-    // function handleSubmit(e){
-    //     e.preventDefault();
-    //     if (formData.comment !== undefined && formData.comment !== ''){
-    //         console.log(formData.comment)
-    //         const newComment = {comments: [...comments, formData.comment]};
-    //         fetch(`${process.env.REACT_APP_API_URL}/cities/${id}`, {
-    //             method: "PATCH",
-    //             headers: {
-    //             "Content-Type": "application/json",
-    //             },
-    //             body: JSON.stringify(newComment),
-    //         })
-    //             .then((r) => r.json())
-    //             .then((data) => setComments(data.comments));
-    //         }
-    // }
+    function handleSubmit(e){
+        e.preventDefault();
+        console.log(formData)
+        if (formData.comment !== undefined && formData.comment !== ''){
+            console.log(formData.comment)
+            fetch(`https://radiant-oasis-70177.herokuapp.com/reviews`, {
+                method: "POST",
+                headers: {
+                "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData)
+            }).then((r) => r.json())
+                .then((data) => setReviews([...reviews, data]))
+                .catch((error) => {
+                    console.error('Error:', error);
+                  })
+            }
+    }
     
     return(
         <Container >
@@ -125,33 +141,36 @@ function CitySpecs (){
                 <Col style={divStyle}>
                     <h1 style={{fontWeight: 700}}>Reviews</h1>
                     <Row style ={{margin:"20px"}}>
-                        {/* <Col style ={{marginBottom:"10px"}}>
-                            { <form onSubmit={handleSubmit}>
-                                <Form.Group className="mb-3" controlId="formBasicEmail">   
-                                    <FloatingLabel controlId="floatingTextarea2" label={`Review ${city.name.toLowerCase()}`}>
-                                        <Form.Control
-                                            as="textarea"
-                                            placeholder={`Review ${city.name.toLowerCase()}`}
-                                            onChange={handleComment} 
-                                            name='comment'
-                                            style={{ height: '100px' }}
-                                        />
-                                    </FloatingLabel>
-                                    <Form.Text className="text-muted">
-                                        Everyone can see your comment
-                                    </Form.Text>
-                                </Form.Group>
-                                <Button variant="warning" type="submit">
-                                    Submit
-                                </Button>
-                            </form> }
-                        </Col> */}
                         <Col>
                             <ListGroup as="ol" numbered>{reviews.length !== 0 ? displayReviews : noReview
                                 }
                              </ListGroup>
                         </Col>  
                     </Row>
+                </Col>
+            </Row>
+            <Row>
+                <Col style ={{marginBottom:"10px"}}>
+                    { <form onSubmit={handleSubmit}>
+                        <Form.Group className="mb-3" controlId="formBasicEmail">   
+                            <FloatingLabel label={`Review ${city.name}`}>
+                                <Form.Control
+                                    as="textarea"
+                                    placeholder={`Review ${city.name}`}
+                                    onChange={handleComment} 
+                                    name='comment'
+                                    style={{ height: '100px' }}
+                                    id={`${city.id}`}
+                                />
+                            </FloatingLabel>
+                            <Form.Text className="text-muted">
+                                Everyone can see your comment
+                            </Form.Text>
+                        </Form.Group>
+                        <Button variant="warning" type="submit">
+                            Submit
+                        </Button>
+                    </form> }
                 </Col>
             </Row>
             
