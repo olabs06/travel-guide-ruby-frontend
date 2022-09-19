@@ -2,15 +2,15 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { Link } from "react-router-dom";
 
-function CityCard({city}){
-    function truncate (string = '', limit = 0) {
-        if (string.length > 13) {
-            return `${string.substring(0, limit)}...`
-        } else{
-            return string
-        }
-      }
+export function truncate (string = '', limit = 0) {
+    if (string.length > 13) {
+        return `${string.substring(0, limit)}...`
+    } else{
+        return string
+    }
+  }
 
+function CityCard({city}){
       const textStyle = {
         fontSize: 15, color: 'black', fontWeight: 500
       }
@@ -18,7 +18,6 @@ function CityCard({city}){
       const titleStyle = {
         fontSize: 30, color: 'black',  fontWeight: 'bold'
       }
-
 
   return (
     <Card style={{ width: '100%', margin: '10px', }}>

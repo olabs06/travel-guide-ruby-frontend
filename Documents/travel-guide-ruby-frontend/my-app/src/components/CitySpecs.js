@@ -10,16 +10,17 @@ import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Badge from 'react-bootstrap/Badge';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Image from 'react-bootstrap/Image'
+import {truncate} from "./CityCard";
 
 function CitySpecs (){
     const params = useParams();
     const id = params.id
-    console.log(id)
+    const noReview = <div>No reviews for this city at the moment</div>
     const [formData, setFormData] = useState({name: 'comments', value: ""})
     const [city, setCity] = useState({})
     const [reviews, setReviews] = useState([])
     useEffect(()=>{
-        fetch(`http://localhost:9292/cities/${id}`)
+        fetch(`https://radiant-oasis-70177.herokuapp.com/cities/${id}`)
         .then(r => r.json())
         .then(data => {
             setCity(data)
@@ -45,14 +46,42 @@ function CitySpecs (){
             key={nanoid(5)}
         >
             <div className="ms-2 me-auto">
-                <div className="fw-bold">Anonymous User</div>
+                <div className="fw-bold">{review.user.name}</div>
                 <div>{review.comment}</div>
+                <br/>
+                <div className="fw-bold">Star Ratings (out of 5)</div>
+                <br/>
+                <Row>
+                    <Col><h6>Traffic:</h6> {review.traffic}</Col>
+                    <Col><h6>Night life:</h6> {review.night_life}</Col>
+                    <Col><h6>Foreigner friendly:</h6> {review.friendly_to_foreigner}</Col>
+                </Row>
+                <Row>
+                    <Col><h6>Places to work from:</h6> {review.places_to_work_from}</Col>
+                    <Col><h6>Quality of internet:</h6> {review.quality_of_internet}</Col>
+                    <Col><h6>Quality of healthcare:</h6> {review.quality_of_healthcare}</Col>
+                </Row>
             </div>
-            <Badge bg="danger" pill>
-                <small>review</small>
-            </Badge>
+            
+            <Row>
+                <Badge pill>
+                    <small>{truncate(review.updated_at, 10)}</small>
+                </Badge>
+                <button  onClick={handleDelete} id={review.id}>
+                    🗑
+                </button>
+            </Row>            
         </ListGroup.Item>
         )
+
+        function handleDelete(e){
+            const id = e.target.id
+            fetch(`https://radiant-oasis-70177.herokuapp.com/reviews/${id}`, {
+                method: "DELETE",
+            })
+            const updatedReviews = reviews.filter((review) => review.id.toString() !== id)
+            setReviews(updatedReviews)
+        }
     
     // function handleComment(e){
     //     let name = e.target.name;
@@ -80,16 +109,24 @@ function CitySpecs (){
     return(
         <Container >
             <Row >
-                <Col><Image src={city.image} alt={city.name}  width='450' rounded="true" fluid="true" style={imgStyle}/></Col>
+                <Col>
+                    <Image src={city.image} alt={city.name}  width='450' rounded="true" fluid="true" style={imgStyle}/>
+                    <h1 style={{fontWeight: 700}}>{city.name}</h1>
+                    <Row>
+                        <Col><h4>Minimum Wage</h4><p>${city.minimum_wage}</p></Col>
+                        <Col><h4>Country</h4><p>{city.country}</p></Col>
+                    </Row>
+                    <Row>
+                        <Col><h4>Currency</h4><p>{city.currency}</p></Col>
+                        <Col><h4>Employment Rate</h4><p>{city.employment_rate}%</p></Col>
+                    </Row>
+                    <Row><h4>Crime Rate</h4><p>{city.crime_rate}%</p></Row> 
+                </Col>
                 <Col style={divStyle}>
-                    <h1>{city.name}</h1>
-                    <h5>Minimum Wage</h5><p>{city.minimum_wage}%</p>
-                    <h5>Currency</h5><p>{city.currency}</p>
-                    <h5>Country</h5><p>{city.country}</p>
-                    <h5>Employment Rate</h5><p>{city.employment_rate}%</p>
+                    <h1 style={{fontWeight: 700}}>Reviews</h1>
                     <Row style ={{margin:"20px"}}>
-                        <Col style ={{marginBottom:"10px"}}>
-                            {/* <form onSubmit={handleSubmit}>
+                        {/* <Col style ={{marginBottom:"10px"}}>
+                            { <form onSubmit={handleSubmit}>
                                 <Form.Group className="mb-3" controlId="formBasicEmail">   
                                     <FloatingLabel controlId="floatingTextarea2" label={`Review ${city.name.toLowerCase()}`}>
                                         <Form.Control
@@ -107,10 +144,12 @@ function CitySpecs (){
                                 <Button variant="warning" type="submit">
                                     Submit
                                 </Button>
-                            </form> */}
-                        </Col>
+                            </form> }
+                        </Col> */}
                         <Col>
-                            <ListGroup as="ol" numbered>{displayReviews}</ListGroup>
+                            <ListGroup as="ol" numbered>{reviews.length !== 0 ? displayReviews : noReview
+                                }
+                             </ListGroup>
                         </Col>  
                     </Row>
                 </Col>

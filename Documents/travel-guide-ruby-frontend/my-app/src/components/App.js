@@ -22,7 +22,7 @@ function App() {
   console.log(match.pathname, match.pathnameBase, match.params['*'])
 
   useEffect(()=>{
-    fetch(`http://localhost:9292/cities`)
+    fetch(`https://radiant-oasis-70177.herokuapp.com/cities`)
     .then(r => r.json())
     .then(data => {
       setCityList(data)
@@ -78,7 +78,7 @@ function App() {
         </Col>
       </Row>
       <Routes>
-          <Route path='/' element={<h1>SIUUUUUUUUUUUUUU</h1>}/>
+          <Route path='/' element={<Home/>}/>
           <Route path={`cities`} element={<CityList cities={cities}/>}/>
           <Route path={`cities/:id`} element={<CitySpecs />} />
       </Routes>      
