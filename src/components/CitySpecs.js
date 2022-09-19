@@ -106,9 +106,7 @@ function CitySpecs (){
                     <h1 style={{fontWeight: 700}}>Reviews</h1>
                     <Row style ={{margin:"20px"}}>
                         <Col>
-                            <ListGroup as="ol" numbered>{reviews.length !== 0 ? displayReviews : noReview
-                                }
-                             </ListGroup>
+                            <ListGroup as="ol" numbered>{reviews.length !== 0 ? displayReviews : noReview}</ListGroup>
                         </Col>  
                     </Row>
                 </Col>

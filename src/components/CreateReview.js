@@ -1,15 +1,27 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import Option from './Option'
 
 let baseData = {
     "user_id": 5,
     "city_id": 3
 }
 
+// let rating = {
+    
+// }
+
 function CreateReview({city, getReview}){
     const [formData, setFormData] = useState(baseData)
+    const [users, setUsers] = useState([])
+
+    useEffect(()=>{
+        fetch(`https://radiant-oasis-70177.herokuapp.com/users`)
+        .then(r => r.json())
+        .then(data => {setUsers(data)})
+      },[])
 
     function handleComment(e){
         let name = e.target.name;
@@ -37,9 +49,18 @@ function CreateReview({city, getReview}){
             }
     }
 
+    const options = users.map((user)=> <Option item={user}/>)
+
     return(
         <form onSubmit={handleSubmit}>
-            <Form.Group className="mb-3" controlId="formBasicEmail">   
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Select aria-label="Default select example" name='user_id' onChange={handleComment}>
+                    <option>WHO ARE YOU?</option>
+                    {options}
+                </Form.Select>
+                <Form.Text className="text-muted">
+                    What are your thoughts?
+                </Form.Text>   
                 <FloatingLabel label={`Review ${city.name}`}>
                     <Form.Control
                         as="textarea"
