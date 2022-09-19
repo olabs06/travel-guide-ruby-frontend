@@ -11,19 +11,16 @@ import Badge from 'react-bootstrap/Badge';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Image from 'react-bootstrap/Image'
 import {truncate} from "./CityCard";
-import EditReview from "./EditReview";
 
 function CitySpecs (){
     const params = useParams();
     const id = params.id
     const noReview = <div>No reviews for this city at the moment</div>
     const [formData, setFormData] = useState({name: 'comments', value: ""})
-    const [isEditing, setIsEditing] = useState(false)
     const [city, setCity] = useState({})
     const [reviews, setReviews] = useState([])
-    const [reviewID, setReviewID] = useState()
     useEffect(()=>{
-        fetch(`http://localhost:9292/cities/${id}`)
+        fetch(`https://radiant-oasis-70177.herokuapp.com/cities/${id}`)
         .then(r => r.json())
         .then(data => {
             setCity(data)
@@ -70,19 +67,20 @@ function CitySpecs (){
                 <Badge pill>
                     <small>{truncate(review.updated_at, 10)}</small>
                 </Badge>
-                <button onClick={handleUpdate} id={review.id}>
-                    ✏️
-                </button>
-                <button  id={review.id}>
+                <button  onClick={handleDelete} id={review.id}>
                     🗑
                 </button>
             </Row>            
         </ListGroup.Item>
         )
 
-        function handleUpdate(e){
-            setIsEditing((isEditing) => !isEditing)
-            setReviewID(e.target.id)
+        function handleDelete(e){
+            const id = e.target.id
+            fetch(`https://radiant-oasis-70177.herokuapp.com/reviews/${id}`, {
+                method: "DELETE",
+            })
+            const updatedReviews = reviews.filter((review) => review.id.toString() !== id)
+            setReviews(updatedReviews)
         }
     
     // function handleComment(e){
@@ -149,8 +147,7 @@ function CitySpecs (){
                             </form> }
                         </Col> */}
                         <Col>
-                            <ListGroup as="ol" numbered>{reviews.length !== 0 ?
-                                (isEditing ?  <EditReview id={reviewID}/> : displayReviews) : noReview
+                            <ListGroup as="ol" numbered>{reviews.length !== 0 ? displayReviews : noReview
                                 }
                              </ListGroup>
                         </Col>  
