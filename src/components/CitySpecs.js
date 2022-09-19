@@ -63,14 +63,14 @@ function CitySpecs (){
                 <div className="fw-bold">Star Ratings (out of 5)</div>
                 <br/>
                 <Row>
-                    <Col><h6>Traffic:</h6> {review.traffic}</Col>
-                    <Col><h6>Night life:</h6> {review.night_life}</Col>
-                    <Col><h6>Foreigner friendly:</h6> {review.friendly_to_foreigner}</Col>
+                    <Col><h6>Traffic:</h6> {"⭐".repeat(review.traffic)}</Col>
+                    <Col><h6>Night life:</h6> {"⭐".repeat(review.night_life)}</Col>
+                    <Col><h6>Foreigner friendly:</h6> {"⭐".repeat(review.friendly_to_foreigner)}</Col>
                 </Row>
                 <Row>
-                    <Col><h6>Places to work from:</h6> {review.places_to_work_from}</Col>
-                    <Col><h6>Quality of internet:</h6> {review.quality_of_internet}</Col>
-                    <Col><h6>Quality of healthcare:</h6> {review.quality_of_healthcare}</Col>
+                    <Col><h6>Places to work from:</h6> {"⭐".repeat(review.places_to_work_from)}</Col>
+                    <Col><h6>Quality of internet:</h6> {"⭐".repeat(review.quality_of_internet)}</Col>
+                    <Col><h6>Quality of healthcare:</h6> {"⭐".repeat(review.quality_of_healthcare)}</Col>
                 </Row>
             </div>
             
@@ -97,8 +97,6 @@ function CitySpecs (){
     function handleComment(e){
         let name = e.target.name;
         let value = e.target.value;
-        console.log(name,value, e.target.id)
-        
         baseData.city_id = e.target.id
         setFormData({...formData, [name]:value})
     }
