@@ -8,6 +8,7 @@ import RankBar from './RankBar';
 import Home from './Home';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import '../style/App.css';
 
 function App() {

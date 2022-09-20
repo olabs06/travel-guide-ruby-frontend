@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from 'react'
-import Button from 'react-bootstrap/Button';
+import {Button, Card} from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Option from './Option'
+import '../style/App.css';
 
 let baseData = {
     "user_id": 5,
@@ -52,7 +53,8 @@ function CreateReview({city, getReview}){
     const options = users.map((user)=> <Option item={user}/>)
 
     return(
-        <form onSubmit={handleSubmit}>
+        <Card style={{width: '70%'}}>
+            <form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Select aria-label="Default select example" name='user_id' onChange={handleComment}>
                     <option>WHO ARE YOU?</option>
@@ -128,7 +130,8 @@ function CreateReview({city, getReview}){
             <Button variant="primary" type="submit">
                 Submit
             </Button>
-        </form> 
+            </form> 
+        </Card>
     );
 }
 
