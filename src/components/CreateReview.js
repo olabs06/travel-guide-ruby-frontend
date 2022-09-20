@@ -84,7 +84,7 @@ function CreateReview({city, getReview}){
                     <option value="4">great</option>
                     <option value="5">Excellent</option>
                 </Form.Select>
-                <Form.Select aria-label="Default select example" name='night_life' onChange={handleComment}>
+                <Form.Select aria-label="Default select example" name='night_life' onChange={handleComment} style={{marginBottom:'10px'}}>
                     <option>How would you rate the night life in {city.name}</option>
                     <option value="1">bad</option>
                     <option value="2">fair</option>
@@ -92,7 +92,7 @@ function CreateReview({city, getReview}){
                     <option value="4">great</option>
                     <option value="5">Excellent</option>
                 </Form.Select>
-                <Form.Select aria-label="Default select example" name='friendly_to_foreigner' onChange={handleComment}>
+                <Form.Select aria-label="Default select example" name='friendly_to_foreigner' onChange={handleComment} style={{marginBottom:'10px'}}>
                     <option>How would you rate the friendliness to foreigners in {city.name}</option>
                     <option value="1">bad</option>
                     <option value="2">fair</option>
@@ -100,7 +100,7 @@ function CreateReview({city, getReview}){
                     <option value="4">great</option>
                     <option value="5">Excellent</option>
                 </Form.Select>
-                <Form.Select aria-label="Default select example" name='places_to_work_from' onChange={handleComment}>
+                <Form.Select aria-label="Default select example" name='places_to_work_from' onChange={handleComment} style={{marginBottom:'10px'}}>
                     <option>How would you rate the places to work from in {city.name}</option>
                     <option value="1">bad</option>
                     <option value="2">fair</option>
@@ -108,7 +108,7 @@ function CreateReview({city, getReview}){
                     <option value="4">great</option>
                     <option value="5">Excellent</option>
                 </Form.Select>
-                <Form.Select aria-label="Default select example" name='quality_of_internet' onChange={handleComment}>
+                <Form.Select aria-label="Default select example" name='quality_of_internet' onChange={handleComment} style={{marginBottom:'10px'}}>
                         <option>How would you rate the quality of internet in {city.name}</option>
                         <option value="1">bad</option>
                         <option value="2">fair</option>
@@ -117,7 +117,7 @@ function CreateReview({city, getReview}){
                         <option value="5">Excellent</option>
                 </Form.Select>
 
-                <Form.Select aria-label="Default select example" name='quality_of_healthcare' onChange={handleComment}>
+                <Form.Select aria-label="Default select example" name='quality_of_healthcare' onChange={handleComment} style={{marginBottom:'10px'}}>
                         <option>How would you rate the quality of healthcare in {city.name}</option>
                         <option value="1">bad</option>
                         <option value="2">fair</option>
@@ -127,7 +127,7 @@ function CreateReview({city, getReview}){
                 </Form.Select>
 
             </Form.Group>
-            <Button variant="primary" type="submit">
+            <Button variant="success" type="submit">
                 Submit
             </Button>
             </form> 
