@@ -76,7 +76,7 @@ function CreateReview({city, getReview}){
                 <Form.Text className="text-muted">
                     Everyone can see your comment
                 </Form.Text>
-                <Form.Select aria-label="Default select example" name='traffic' onChange={handleComment}>
+                <Form.Select aria-label="Default select example" name='traffic' onChange={handleComment} style={{marginBottom:'10px'}}>
                     <option>How would you rate the traffic in {city.name}</option>
                     <option value="1">bad</option>
                     <option value="2">fair</option>
