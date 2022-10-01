@@ -78,52 +78,52 @@ function CreateReview({city, getReview}){
                 </Form.Text>
                 <Form.Select aria-label="Default select example" name='traffic' onChange={handleComment} style={{marginBottom:'10px'}}>
                     <option>How would you rate the traffic in {city.name}</option>
-                    <option value="1">bad</option>
-                    <option value="2">fair</option>
-                    <option value="3">good</option>
-                    <option value="4">great</option>
+                    <option value="1">Bad</option>
+                    <option value="2">Fair</option>
+                    <option value="3">Good</option>
+                    <option value="4">Very Good</option>
                     <option value="5">Excellent</option>
                 </Form.Select>
                 <Form.Select aria-label="Default select example" name='night_life' onChange={handleComment}>
                     <option>How would you rate the night life in {city.name}</option>
-                    <option value="1">bad</option>
-                    <option value="2">fair</option>
-                    <option value="3">good</option>
-                    <option value="4">great</option>
+                    <option value="1">Bad</option>
+                    <option value="2">Fair</option>
+                    <option value="3">Good</option>
+                    <option value="4">Very Good</option>
                     <option value="5">Excellent</option>
                 </Form.Select>
                 <Form.Select aria-label="Default select example" name='friendly_to_foreigner' onChange={handleComment}>
                     <option>How would you rate the friendliness to foreigners in {city.name}</option>
-                    <option value="1">bad</option>
-                    <option value="2">fair</option>
-                    <option value="3">good</option>
-                    <option value="4">great</option>
+                    <option value="1">Bad</option>
+                    <option value="2">Fair</option>
+                    <option value="3">Good</option>
+                    <option value="4">Very Good</option>
                     <option value="5">Excellent</option>
                 </Form.Select>
                 <Form.Select aria-label="Default select example" name='places_to_work_from' onChange={handleComment}>
                     <option>How would you rate the places to work from in {city.name}</option>
-                    <option value="1">bad</option>
-                    <option value="2">fair</option>
-                    <option value="3">good</option>
-                    <option value="4">great</option>
+                    <option value="1">Bad</option>
+                    <option value="2">Fair</option>
+                    <option value="3">Good</option>
+                    <option value="4">Very Good</option>
                     <option value="5">Excellent</option>
                 </Form.Select>
                 <Form.Select aria-label="Default select example" name='quality_of_internet' onChange={handleComment}>
-                        <option>How would you rate the quality of internet in {city.name}</option>
-                        <option value="1">bad</option>
-                        <option value="2">fair</option>
-                        <option value="3">good</option>
-                        <option value="4">great</option>
-                        <option value="5">Excellent</option>
+                    <option>How would you rate the quality of internet in {city.name}</option>
+                    <option value="1">Bad</option>
+                    <option value="2">Fair</option>
+                    <option value="3">Good</option>
+                    <option value="4">Very Good</option>
+                    <option value="5">Excellent</option>
                 </Form.Select>
 
                 <Form.Select aria-label="Default select example" name='quality_of_healthcare' onChange={handleComment}>
-                        <option>How would you rate the quality of healthcare in {city.name}</option>
-                        <option value="1">bad</option>
-                        <option value="2">fair</option>
-                        <option value="3">good</option>
-                        <option value="4">great</option>
-                        <option value="5">Excellent</option>
+                    <option>How would you rate the quality of healthcare in {city.name}</option>
+                    <option value="1">Bad</option>
+                    <option value="2">Fair</option>
+                    <option value="3">Good</option>
+                    <option value="4">Very Good</option>
+                    <option value="5">Excellent</option>
                 </Form.Select>
 
             </Form.Group>
